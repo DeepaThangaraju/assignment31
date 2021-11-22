@@ -1,9 +1,11 @@
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 export function Vechicaldetails() {
     const { id } = useParams();
     const [vehical, setVehical] = useState({});
+    const history = useHistory();
     useEffect(() => {
         fetch(`https://6166c4e813aa1d00170a6717.mockapi.io/vechicles/${id}`,
             { method: "GET" })
@@ -16,6 +18,7 @@ export function Vechicaldetails() {
             <p>Model Name:{vehical.name}</p>
             <p>Rate:Rs.{vehical.rate}Lakhs</p>
             <p>Milage:{vehical.milage}</p>
+            <button onClick={() => history.goBack()}>BACK</button>
         </div>
     );
 }
